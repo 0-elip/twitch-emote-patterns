@@ -2,7 +2,7 @@
 require 'clipboard'
 class Emoter
 	attr_reader :txt, :emote 
-	FIRSTLINE = "　　　　　　　　　　　　　　　　　" #only for kaetsuu rn " 　　　　　　　　　　　　　　　　　"
+	FIRSTLINE = "　　　　　　　　　　　　　　　　　　" #only for kaetsuu rn " 　　　　　　　　　　　　　　　　　"
 	NEWLINE_UNE = " 　　　　　　　　　　　　　　　　　　　　　　　" #newline with 0 emote
 	#2 SPEC SPACES PER EMOTE
 	SUPPORTED = ('A'..'B').to_a #add supported characters here
@@ -49,4 +49,4 @@ class Emoter
 		p final.unshift(FIRSTLINE).join
 	end
 end
-Emoter.new("A", "KappaPride").copy
+Emoter.new("B", "KappaPride").copy
