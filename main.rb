@@ -2,12 +2,12 @@
 require 'clipboard'
 class Emoter
 	attr_reader :txt, :emote 
-	FIRSTLINE = "　　　　　　　　　　　　　　　　　　" #only for kaetsuu rn " 　　　　　　　　　　　　　　　　　"
-	NEWLINE_UNE = " 　　　　　　　　　　　　　　　　　　　　　　　" #newline with 0 emote
+	FIRSTLINE = "　　　　　　　　　　　　　　　　　　　　　　　" #only for kaetsuu rn
+	NEWLINE_UNE = " 　　　　　　　　　　　　　　　　　　　　　　　" #newline with 0 emote. 3 diff than ^^
 	#2 SPEC SPACES PER EMOTE
-	SUPPORTED = ('A'..'B').to_a #add supported characters here
+	SUPPORTED = ('A'..'Z').to_a #add supported characters here
 	def txt=(e)
-		raise "Not alphanumeric!" unless e.is_a?(String) && e.chars.all? {|chr| SUPPORTED.include?(chr)} #probs more efficient way but trivial rn
+		raise "Character(s) not supported yet!" unless e.is_a?(String) && e.chars.all? {|chr| SUPPORTED.include?(chr)} #probs more efficient way but trivial rn
 		@txt = e
 	end 
 	def emote=(e)
@@ -38,9 +38,10 @@ class Emoter
 				elsif read
 					if p == "-"
 						read = false
+						final << NEWLINE_UNE
 					else
 						count = final.count("*")
-						p.gsub!(/ /, "　　")
+						p.gsub!(/^/, ".　").gsub!(/[ ]/, "　　") #
 						final << p.gsub(/[*]/, @emote+ " ") + NEWLINE_UNE[0..NEWLINE_UNE.length-(count*2)]
 					end
 				end
@@ -49,4 +50,7 @@ class Emoter
 		p final.unshift(FIRSTLINE).join
 	end
 end
-Emoter.new("B", "KappaPride").copy
+Emoter.new(ARGV[0], ARGV[1]).copy
+
+__END__
+TODO: implement a fix for 4 emotes on a line; looks ugly
