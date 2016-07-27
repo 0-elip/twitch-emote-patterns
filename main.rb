@@ -4,8 +4,9 @@ class Emoter
 	attr_reader :txt, :emote 
 	FIRSTLINE = "　　　　　　　　　　　　　　　　　　　　　　　" #only for kaetsuu rn
 	NEWLINE_UNE = " 　　　　　　　　　　　　　　　　　　　　　　　" #newline with 0 emote. 3 diff than ^^
+
 	#2 SPEC SPACES PER EMOTE
-	SUPPORTED = ('A'..'Z').to_a #add supported characters here
+	SUPPORTED = ('A'..'Z').to_a + ('a'..'z').to_a #add supported characters here
 	def txt=(e)
 		raise "Character(s) not supported yet!" unless e.is_a?(String) && e.chars.all? {|chr| SUPPORTED.include?(chr)} #probs more efficient way but trivial rn
 		@txt = e
