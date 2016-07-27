@@ -26,7 +26,7 @@ class Emoter
 	private
 	
 	def set
-		final = []
+		final = [FIRSTLINE]
 		f = File.open("./patterns.txt", "r")
 		a = f.readlines
 		f.close
@@ -49,7 +49,7 @@ class Emoter
 				end
 			end
 		end
-		p final.unshift(FIRSTLINE).join
+		final.join
 	end
 end
 Emoter.new(ARGV[0], ARGV[1]).copy
